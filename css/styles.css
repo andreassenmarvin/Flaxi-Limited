@@ -435,6 +435,7 @@ a img.aligncenter {
 }
 .first-section h2 {
     color: #ffffff;
+    letter-spacing: 0.04em;
     font-size: 68px;
     font-weight: 300;
     text-transform: capitalize;
@@ -444,6 +445,8 @@ a img.aligncenter {
     position: relative;
 }
 .first-section .lead {
+    width: auto;
+    letter-spacing: 0.04em;
     font-size: 21px;
     font-weight: 300;
     padding: 0 0 40px;
@@ -482,4 +485,18 @@ a img.aligncenter {
 .section.colorsection h3,
 .section.db h3 {
     color: #ffffff;
+}
+
+.btn-learn {
+    width: 150px;
+    height: 45px;
+    background: transparent;
+    color: #fff;
+    border: 2px solid #e8a900;
+    padding: 20px 35px;
+}
+
+.btn-learn:hover {
+    padding: 20px 45px;
+    color: white;
 }
