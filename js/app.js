@@ -11,7 +11,7 @@ $(function () {
     $('.megamenu').affix({
         offset: {
             top: 0,
-            bottom: function() {
+            bottom: function () {
                 return (this.bottom = $('.footer').outerHeight(true))
             }
         }
