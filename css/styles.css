@@ -262,20 +262,24 @@ a img.aligncenter {
     width: 100%;
     z-index: 111;
 }
+
 .header_style_01 .navbar-default {
     background-color: transparent;
     border: 0;
 }
+
 .header_style_01 .navbar,
 .header_style_01 .navbar-nav,
 .header_style_01 .navbar-default,
 .header_style_01 .nav {
     margin-bottom: 0 !important;
 }
+
 .header_style_01 .navbar-brand {
     padding: 2px 15px 0 15px;
 }
-.header_style_01 .navbar-default .navbar-nav > li > a {
+
+.header_style_01 .navbar-default .navbar-nav>li>a {
     border-radius: 0;
     color: #ffffff !important;
     font-size: 15px;
@@ -284,14 +288,17 @@ a img.aligncenter {
     text-transform: uppercase;
     background-color: transparent;
 }
-.header_style_01 .navbar-default .navbar-nav > li a {
+
+.header_style_01 .navbar-default .navbar-nav>li a {
     background-color: transparent !important;
 }
-.header_style_01 .navbar-default .navbar-nav > li:hover a,
-.header_style_01 .navbar-default .navbar-nav > li:focus a {
+
+.header_style_01 .navbar-default .navbar-nav>li:hover a,
+.header_style_01 .navbar-default .navbar-nav>li:focus a {
     opacity: 1;
 }
-.header_style_01 .navbar-right > li {
+
+.header_style_01 .navbar-right>li {
     margin-top: 2px;
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
@@ -299,7 +306,8 @@ a img.aligncenter {
     -o-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
-.header_style_01 .navbar-right > li > a {
+
+.header_style_01 .navbar-right>li>a {
     padding-bottom: 10px;
     padding-top: 10px;
 }
@@ -409,6 +417,8 @@ a img.aligncenter {
 }
 
 .section.wb {
+    position: relative;
+    z-index: 3;
     background-color: #ffffff;
 }
 
@@ -516,7 +526,7 @@ a img.aligncenter {
 }
 
 .overlay {
-    position: absolute;
+    position: fixed;
     background: rgba(17, 17, 17, 0.6);
     width: 100%;
     height: 100%;
