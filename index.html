@@ -172,24 +172,25 @@
                     <form id="contactform" class="row" name="contactform">
                        <fieldset class="row-fluid">
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                             <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name">
+                             <input type="text" name="first_name" id="first_name" class="form-control" placeholder="First Name" required>
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                             <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name">
+                             <input type="text" name="last_name" id="last_name" class="form-control" placeholder="Last Name" required>
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                             <input type="email" name="email" id="email" class="form-control" placeholder="Your Email">
+                             <input type="email" name="email" id="email" class="form-control" placeholder="Your Email" required>
                           </div>
                           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                             <input type="tel" name="phone" id="phone" class="form-control" placeholder="Your phone number">
+                             <input type="tel" name="phone" id="phone" class="form-control" placeholder="Your phone number" required>
                           </div>
                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                             <textarea class="form-control" name="comments" id="comments" rows="6" placeholder="Message..."></textarea>
+                             <textarea class="form-control" name="comments" id="comments" rows="6" placeholder="Message..." required></textarea>
                           </div>
                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                              <button type="submit" value="Send" id="submit" class="btn-send">Send</button>
                           </div>
                        </fieldset>
+                       <p class="text-center message-sent">Message sent!</p>
                     </form>
                  </div>
               </div>

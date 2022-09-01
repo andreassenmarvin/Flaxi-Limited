@@ -16,4 +16,15 @@ $(function () {
             }
         }
     })
+
+    $("#contactform").submit(function (event) {
+        event.preventDefault();
+
+        this.reset();
+        $(".message-sent").fadeIn();
+
+        setTimeout(function() {
+            window.location.href = "/";
+        }, 3000);
+    })
 })
