@@ -1,12 +1,3 @@
-/*!
- * Retina.js v2.1.0
- *
- * Copyright 2016 Axial, LLC
- * Released under the MIT license
- *
- * Retina.js is an open source script that makes it easy to serve
- * high-resolution images to devices with retina displays.
- */
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -74,8 +65,8 @@ function chooseCap(cap) {
      * user provided, we'll use what the user provided.
      */
   } else {
-      return numericCap;
-    }
+    return numericCap;
+  }
 }
 
 /**

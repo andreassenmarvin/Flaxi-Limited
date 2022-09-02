@@ -23,7 +23,7 @@ $(function () {
         this.reset();
         $(".message-sent").fadeIn();
 
-        setTimeout(function() {
+        setTimeout(function () {
             window.location.href = "/";
         }, 3000);
     })

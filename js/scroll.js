@@ -1,7 +1,7 @@
 (function (root, factory) {
-	if ( typeof define === 'function' && define.amd ) {
+	if (typeof define === 'function' && define.amd) {
 		define([], factory(root));
-	} else if ( typeof exports === 'object' ) {
+	} else if (typeof exports === 'object') {
 		module.exports = factory(root);
 	} else {
 		root.smoothScroll = factory(root);
@@ -49,18 +49,18 @@
 		var length = arguments.length;
 
 		// Check if a deep merge
-		if ( Object.prototype.toString.call( arguments[0] ) === '[object Boolean]' ) {
+		if (Object.prototype.toString.call(arguments[0]) === '[object Boolean]') {
 			deep = arguments[0];
 			i++;
 		}
 
 		// Merge the object into the extended object
 		var merge = function (obj) {
-			for ( var prop in obj ) {
-				if ( Object.prototype.hasOwnProperty.call( obj, prop ) ) {
+			for (var prop in obj) {
+				if (Object.prototype.hasOwnProperty.call(obj, prop)) {
 					// If deep merge and property is an object, merge properties
-					if ( deep && Object.prototype.toString.call(obj[prop]) === '[object Object]' ) {
-						extended[prop] = extend( true, extended[prop], obj[prop] );
+					if (deep && Object.prototype.toString.call(obj[prop]) === '[object Object]') {
+						extended[prop] = extend(true, extended[prop], obj[prop]);
 					} else {
 						extended[prop] = obj[prop];
 					}
@@ -69,7 +69,7 @@
 		};
 
 		// Loop through each object and conduct a merge
-		for ( ; i < length; i++ ) {
+		for (; i < length; i++) {
 			var obj = arguments[i];
 			merge(obj);
 		}
@@ -84,8 +84,8 @@
 	 * @param  {Node} elem The element to get the height of
 	 * @return {Number}    The element's height in pixels
 	 */
-	var getHeight = function ( elem ) {
-		return Math.max( elem.scrollHeight, elem.offsetHeight, elem.clientHeight );
+	var getHeight = function (elem) {
+		return Math.max(elem.scrollHeight, elem.offsetHeight, elem.clientHeight);
 	};
 
 	/**
@@ -95,7 +95,7 @@
 	 * @param  {String}  selector Selector to match against (class, ID, data attribute, or tag)
 	 * @return {Boolean|Element}  Returns null if not match found
 	 */
-	var getClosest = function ( elem, selector ) {
+	var getClosest = function (elem, selector) {
 
 		// Variables
 		var firstChar = selector.charAt(0);
@@ -103,44 +103,44 @@
 		var attribute, value;
 
 		// If selector is a data attribute, split attribute from value
-		if ( firstChar === '[' ) {
+		if (firstChar === '[') {
 			selector = selector.substr(1, selector.length - 2);
-			attribute = selector.split( '=' );
+			attribute = selector.split('=');
 
-			if ( attribute.length > 1 ) {
+			if (attribute.length > 1) {
 				value = true;
-				attribute[1] = attribute[1].replace( /"/g, '' ).replace( /'/g, '' );
+				attribute[1] = attribute[1].replace(/"/g, '').replace(/'/g, '');
 			}
 		}
 
 		// Get closest match
-		for ( ; elem && elem !== document && elem.nodeType === 1; elem = elem.parentNode ) {
+		for (; elem && elem !== document && elem.nodeType === 1; elem = elem.parentNode) {
 
 			// If selector is a class
-			if ( firstChar === '.' ) {
-				if ( supports ) {
-					if ( elem.classList.contains( selector.substr(1) ) ) {
+			if (firstChar === '.') {
+				if (supports) {
+					if (elem.classList.contains(selector.substr(1))) {
 						return elem;
 					}
 				} else {
-					if ( new RegExp('(^|\\s)' + selector.substr(1) + '(\\s|$)').test( elem.className ) ) {
+					if (new RegExp('(^|\\s)' + selector.substr(1) + '(\\s|$)').test(elem.className)) {
 						return elem;
 					}
 				}
 			}
 
 			// If selector is an ID
-			if ( firstChar === '#' ) {
-				if ( elem.id === selector.substr(1) ) {
+			if (firstChar === '#') {
+				if (elem.id === selector.substr(1)) {
 					return elem;
 				}
 			}
 
 			// If selector is a data attribute
-			if ( firstChar === '[' ) {
-				if ( elem.hasAttribute( attribute[0] ) ) {
-					if ( value ) {
-						if ( elem.getAttribute( attribute[0] ) === attribute[1] ) {
+			if (firstChar === '[') {
+				if (elem.hasAttribute(attribute[0])) {
+					if (value) {
+						if (elem.getAttribute(attribute[0]) === attribute[1]) {
 							return elem;
 						}
 					} else {
@@ -150,7 +150,7 @@
 			}
 
 			// If selector is a tag
-			if ( elem.tagName.toLowerCase() === selector ) {
+			if (elem.tagName.toLowerCase() === selector) {
 				return elem;
 			}
 
@@ -167,10 +167,10 @@
 	 * @author Mathias Bynens
 	 * @link https://github.com/mathiasbynens/CSS.escape
 	 */
-	var escapeCharacters = function ( id ) {
+	var escapeCharacters = function (id) {
 
 		// Remove leading hash
-		if ( id.charAt(0) === '#' ) {
+		if (id.charAt(0) === '#') {
 			id = id.substr(1);
 		}
 
@@ -248,20 +248,20 @@
 	 * @param {Number} time Time animation should take to complete
 	 * @returns {Number}
 	 */
-	var easingPattern = function ( type, time ) {
+	var easingPattern = function (type, time) {
 		var pattern;
-		if ( type === 'easeInQuad' ) pattern = time * time; // accelerating from zero velocity
-		if ( type === 'easeOutQuad' ) pattern = time * (2 - time); // decelerating to zero velocity
-		if ( type === 'easeInOutQuad' ) pattern = time < 0.5 ? 2 * time * time : -1 + (4 - 2 * time) * time; // acceleration until halfway, then deceleration
-		if ( type === 'easeInCubic' ) pattern = time * time * time; // accelerating from zero velocity
-		if ( type === 'easeOutCubic' ) pattern = (--time) * time * time + 1; // decelerating to zero velocity
-		if ( type === 'easeInOutCubic' ) pattern = time < 0.5 ? 4 * time * time * time : (time - 1) * (2 * time - 2) * (2 * time - 2) + 1; // acceleration until halfway, then deceleration
-		if ( type === 'easeInQuart' ) pattern = time * time * time * time; // accelerating from zero velocity
-		if ( type === 'easeOutQuart' ) pattern = 1 - (--time) * time * time * time; // decelerating to zero velocity
-		if ( type === 'easeInOutQuart' ) pattern = time < 0.5 ? 8 * time * time * time * time : 1 - 8 * (--time) * time * time * time; // acceleration until halfway, then deceleration
-		if ( type === 'easeInQuint' ) pattern = time * time * time * time * time; // accelerating from zero velocity
-		if ( type === 'easeOutQuint' ) pattern = 1 + (--time) * time * time * time * time; // decelerating to zero velocity
-		if ( type === 'easeInOutQuint' ) pattern = time < 0.5 ? 16 * time * time * time * time * time : 1 + 16 * (--time) * time * time * time * time; // acceleration until halfway, then deceleration
+		if (type === 'easeInQuad') pattern = time * time; // accelerating from zero velocity
+		if (type === 'easeOutQuad') pattern = time * (2 - time); // decelerating to zero velocity
+		if (type === 'easeInOutQuad') pattern = time < 0.5 ? 2 * time * time : -1 + (4 - 2 * time) * time; // acceleration until halfway, then deceleration
+		if (type === 'easeInCubic') pattern = time * time * time; // accelerating from zero velocity
+		if (type === 'easeOutCubic') pattern = (--time) * time * time + 1; // decelerating to zero velocity
+		if (type === 'easeInOutCubic') pattern = time < 0.5 ? 4 * time * time * time : (time - 1) * (2 * time - 2) * (2 * time - 2) + 1; // acceleration until halfway, then deceleration
+		if (type === 'easeInQuart') pattern = time * time * time * time; // accelerating from zero velocity
+		if (type === 'easeOutQuart') pattern = 1 - (--time) * time * time * time; // decelerating to zero velocity
+		if (type === 'easeInOutQuart') pattern = time < 0.5 ? 8 * time * time * time * time : 1 - 8 * (--time) * time * time * time; // acceleration until halfway, then deceleration
+		if (type === 'easeInQuint') pattern = time * time * time * time * time; // accelerating from zero velocity
+		if (type === 'easeOutQuint') pattern = 1 + (--time) * time * time * time * time; // decelerating to zero velocity
+		if (type === 'easeInOutQuint') pattern = time < 0.5 ? 16 * time * time * time * time * time : 1 + 16 * (--time) * time * time * time * time; // acceleration until halfway, then deceleration
 		return pattern || time; // no easing, no acceleration
 	};
 
@@ -273,7 +273,7 @@
 	 * @param {Number} offset Number of pixels by which to offset scroll
 	 * @returns {Number}
 	 */
-	var getEndLocation = function ( anchor, headerHeight, offset ) {
+	var getEndLocation = function (anchor, headerHeight, offset) {
 		var location = 0;
 		if (anchor.offsetParent) {
 			do {
@@ -290,8 +290,8 @@
 	 * @private
 	 * @returns {Number}
 	 */
-	var getViewportHeight = function() {
-		return Math.max( document.documentElement.clientHeight, root.innerHeight || 0 );
+	var getViewportHeight = function () {
+		return Math.max(document.documentElement.clientHeight, root.innerHeight || 0);
 	};
 
 	/**
@@ -313,8 +313,8 @@
 	 * @param {String} options Link-specific options as a data attribute string
 	 * @returns {Object}
 	 */
-	var getDataOptions = function ( options ) {
-		return !options || !(typeof JSON === 'object' && typeof JSON.parse === 'function') ? {} : JSON.parse( options );
+	var getDataOptions = function (options) {
+		return !options || !(typeof JSON === 'object' && typeof JSON.parse === 'function') ? {} : JSON.parse(options);
 	};
 
 	/**
@@ -323,27 +323,27 @@
 	 * @param  {Node}   header The header
 	 * @return {Number}        The height of the header
 	 */
-	var getHeaderHeight = function ( header ) {
-		return !header ? 0 : ( getHeight( header ) + header.offsetTop );
+	var getHeaderHeight = function (header) {
+		return !header ? 0 : (getHeight(header) + header.offsetTop);
 	};
 
 	/**
 	 * Bring the anchored element into focus
 	 * @private
 	 */
-	var adjustFocus = function ( anchor, endLocation, isNum ) {
+	var adjustFocus = function (anchor, endLocation, isNum) {
 
 		// Don't run if scrolling to a number on the page
-		if ( isNum ) return;
+		if (isNum) return;
 
 		// Otherwise, bring anchor element into focus
 		anchor.focus();
-		if ( document.activeElement.id !== anchor.id ) {
-			anchor.setAttribute( 'tabindex', '-1' );
+		if (document.activeElement.id !== anchor.id) {
+			anchor.setAttribute('tabindex', '-1');
 			anchor.focus();
 			anchor.style.outline = 'none';
 		}
-		root.scrollTo( 0 , endLocation );
+		root.scrollTo(0, endLocation);
 
 	};
 
@@ -354,26 +354,26 @@
 	 * @param {Element}     toggle  The element that toggled the scroll event
 	 * @param {Object}      options
 	 */
-	smoothScroll.animateScroll = function ( anchor, toggle, options ) {
+	smoothScroll.animateScroll = function (anchor, toggle, options) {
 
 		// Options and overrides
-		var overrides = getDataOptions( toggle ? toggle.getAttribute('data-options') : null );
-		var animateSettings = extend( settings || defaults, options || {}, overrides ); // Merge user options with defaults
+		var overrides = getDataOptions(toggle ? toggle.getAttribute('data-options') : null);
+		var animateSettings = extend(settings || defaults, options || {}, overrides); // Merge user options with defaults
 
 		// Selectors and variables
-		var isNum = Object.prototype.toString.call( anchor ) === '[object Number]' ? true : false;
+		var isNum = Object.prototype.toString.call(anchor) === '[object Number]' ? true : false;
 		var anchorElem = isNum || !anchor.tagName ? null : anchor;
-		if ( !isNum && !anchorElem ) return;
+		if (!isNum && !anchorElem) return;
 		var startLocation = root.pageYOffset; // Current location on the page
-		if ( animateSettings.selectorHeader && !fixedHeader ) {
+		if (animateSettings.selectorHeader && !fixedHeader) {
 			// Get the fixed header if not already set
-			fixedHeader = document.querySelector( animateSettings.selectorHeader );
+			fixedHeader = document.querySelector(animateSettings.selectorHeader);
 		}
-		if ( !headerHeight ) {
+		if (!headerHeight) {
 			// Get the height of a fixed header if one exists and not already set
-			headerHeight = getHeaderHeight( fixedHeader );
+			headerHeight = getHeaderHeight(fixedHeader);
 		}
-		var endLocation = isNum ? anchor : getEndLocation( anchorElem, headerHeight, parseInt(animateSettings.offset, 10) ); // Location to scroll to
+		var endLocation = isNum ? anchor : getEndLocation(anchorElem, headerHeight, parseInt(animateSettings.offset, 10)); // Location to scroll to
 		var distance = endLocation - startLocation; // distance to travel
 		var documentHeight = getDocumentHeight();
 		var timeLapsed = 0;
@@ -386,18 +386,18 @@
 		 * @param {Number} endLocation Scroll to location
 		 * @param {Number} animationInterval How much to scroll on this loop
 		 */
-		var stopAnimateScroll = function ( position, endLocation, animationInterval ) {
+		var stopAnimateScroll = function (position, endLocation, animationInterval) {
 			var currentLocation = root.pageYOffset;
-			if ( position == endLocation || currentLocation == endLocation || ( (root.innerHeight + currentLocation) >= documentHeight ) ) {
+			if (position == endLocation || currentLocation == endLocation || ((root.innerHeight + currentLocation) >= documentHeight)) {
 
 				// Clear the animation timer
 				clearInterval(animationInterval);
 
 				// Bring the anchored element into focus
-				adjustFocus( anchor, endLocation, isNum );
+				adjustFocus(anchor, endLocation, isNum);
 
 				// Run callback after animation complete
-				animateSettings.callback( anchor, toggle );
+				animateSettings.callback(anchor, toggle);
 
 			}
 		};
@@ -408,10 +408,10 @@
 		 */
 		var loopAnimateScroll = function () {
 			timeLapsed += 16;
-			percentage = ( timeLapsed / parseInt(animateSettings.speed, 10) );
-			percentage = ( percentage > 1 ) ? 1 : percentage;
-			position = startLocation + ( distance * easingPattern(animateSettings.easing, percentage) );
-			root.scrollTo( 0, Math.floor(position) );
+			percentage = (timeLapsed / parseInt(animateSettings.speed, 10));
+			percentage = (percentage > 1) ? 1 : percentage;
+			position = startLocation + (distance * easingPattern(animateSettings.easing, percentage));
+			root.scrollTo(0, Math.floor(position));
 			stopAnimateScroll(position, endLocation, animationInterval);
 		};
 
@@ -428,8 +428,8 @@
 		 * Reset position to fix weird iOS bug
 		 * @link https://github.com/cferdinandi/smooth-scroll/issues/45
 		 */
-		if ( root.pageYOffset === 0 ) {
-			root.scrollTo( 0, 0 );
+		if (root.pageYOffset === 0) {
+			root.scrollTo(0, 0);
 		}
 
 		// Start scrolling animation
@@ -447,13 +447,13 @@
 		var hash = root.location.hash;
 
 		// Only run if there's an anchor element to scroll to
-		if ( !anchor ) return;
+		if (!anchor) return;
 
 		// Reset the anchor element's ID
-		anchor.id = anchor.getAttribute( 'data-scroll-id' );
+		anchor.id = anchor.getAttribute('data-scroll-id');
 
 		// Scroll to the anchored content
-		smoothScroll.animateScroll( anchor, toggle );
+		smoothScroll.animateScroll(anchor, toggle);
 
 		// Reset anchor and toggle
 		anchor = null;
@@ -468,20 +468,20 @@
 	var clickHandler = function (event) {
 
 		// Don't run if right-click or command/control + click
-		if ( event.button !== 0 || event.metaKey || event.ctrlKey ) return;
+		if (event.button !== 0 || event.metaKey || event.ctrlKey) return;
 
 		// Check if a smooth scroll link was clicked
-		toggle = getClosest( event.target, settings.selector );
-		if ( !toggle || toggle.tagName.toLowerCase() !== 'a' ) return;
+		toggle = getClosest(event.target, settings.selector);
+		if (!toggle || toggle.tagName.toLowerCase() !== 'a') return;
 
 		// Only run if link is an anchor and points to the current page
-		if ( toggle.hostname !== root.location.hostname || toggle.pathname !== root.location.pathname || !/#/.test(toggle.href) ) return;
+		if (toggle.hostname !== root.location.hostname || toggle.pathname !== root.location.pathname || !/#/.test(toggle.href)) return;
 
 		// Get the sanitized hash
-		var hash = escapeCharacters( toggle.hash );
+		var hash = escapeCharacters(toggle.hash);
 
 		// If the hash is empty, scroll to the top of the page
-		if ( hash === '#' ) {
+		if (hash === '#') {
 
 			// Prevent default link behavior
 			event.preventDefault();
@@ -491,12 +491,12 @@
 
 			// Save or create the ID as a data attribute and remove it (prevents scroll jump)
 			var id = anchor.id ? anchor.id : 'smooth-scroll-top';
-			anchor.setAttribute( 'data-scroll-id', id );
+			anchor.setAttribute('data-scroll-id', id);
 			anchor.id = '';
 
 			// If no hash change event will happen, fire manually
 			// Otherwise, update the hash
-			if ( root.location.hash.substring(1) === id ) {
+			if (root.location.hash.substring(1) === id) {
 				hashChangeHandler();
 			} else {
 				root.location.hash = id;
@@ -507,15 +507,15 @@
 		}
 
 		// Get the anchored element
-		anchor = document.querySelector( hash );
+		anchor = document.querySelector(hash);
 
 		// If anchored element exists, save the ID as a data attribute and remove it (prevents scroll jump)
-		if ( !anchor ) return;
-		anchor.setAttribute( 'data-scroll-id', anchor.id );
+		if (!anchor) return;
+		anchor.setAttribute('data-scroll-id', anchor.id);
 		anchor.id = '';
 
 		// If no hash change event will happen, fire manually
-		if ( toggle.hash === root.location.hash ) {
+		if (toggle.hash === root.location.hash) {
 			event.preventDefault();
 			hashChangeHandler();
 		}
@@ -529,10 +529,10 @@
 	 * @param  {Object} settings
 	 */
 	var resizeThrottler = function (event) {
-		if ( !eventTimeout ) {
-			eventTimeout = setTimeout(function() {
+		if (!eventTimeout) {
+			eventTimeout = setTimeout(function () {
 				eventTimeout = null; // Reset timeout
-				headerHeight = getHeaderHeight( fixedHeader ); // Get the height of a fixed header if one exists
+				headerHeight = getHeaderHeight(fixedHeader); // Get the height of a fixed header if one exists
 			}, 66);
 		}
 	};
@@ -544,11 +544,11 @@
 	smoothScroll.destroy = function () {
 
 		// If plugin isn't already initialized, stop
-		if ( !settings ) return;
+		if (!settings) return;
 
 		// Remove event listeners
-		document.removeEventListener( 'click', clickHandler, false );
-		root.removeEventListener( 'resize', resizeThrottler, false );
+		document.removeEventListener('click', clickHandler, false);
+		root.removeEventListener('resize', resizeThrottler, false);
 
 		// Reset varaibles
 		settings = null;
@@ -565,28 +565,28 @@
 	 * @public
 	 * @param {Object} options User settings
 	 */
-	smoothScroll.init = function ( options ) {
+	smoothScroll.init = function (options) {
 
 		// feature test
-		if ( !supports ) return;
+		if (!supports) return;
 
 		// Destroy any existing initializations
 		smoothScroll.destroy();
 
 		// Selectors and variables
-		settings = extend( defaults, options || {} ); // Merge user options with defaults
-		fixedHeader = settings.selectorHeader ? document.querySelector( settings.selectorHeader ) : null; // Get the fixed header
-		headerHeight = getHeaderHeight( fixedHeader );
+		settings = extend(defaults, options || {}); // Merge user options with defaults
+		fixedHeader = settings.selectorHeader ? document.querySelector(settings.selectorHeader) : null; // Get the fixed header
+		headerHeight = getHeaderHeight(fixedHeader);
 
 		// When a toggle is clicked, run the click handler
-		document.addEventListener( 'click', clickHandler, false );
+		document.addEventListener('click', clickHandler, false);
 
 		// Listen for hash changes
 		root.addEventListener('hashchange', hashChangeHandler, false);
 
 		// If window is resized and there's a fixed header, recalculate its size
-		if ( fixedHeader ) {
-			root.addEventListener( 'resize', resizeThrottler, false );
+		if (fixedHeader) {
+			root.addEventListener('resize', resizeThrottler, false);
 		}
 
 	};
