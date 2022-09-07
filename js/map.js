@@ -1,5 +1,5 @@
 var locations = [
-    ['<div class="infobox"><h3 class="title"><a href="#">OUR USA OFFICE</a></h3><span>NEW YORK CITY 2045 / 65</span><span>+90 555 666 77 88</span></div>',
+    ['<div class="infobox"><h3 class="title"><a href="#">OUR OFFICE</a></h3><span>Off James Gichuru &, Olenguruone roads. Lavington, PO BOX: 835-00202, Nairobi, Kenya.</span><span>+254 776 629 284</span></div>',
         52.370216,
         4.895168,
         2
