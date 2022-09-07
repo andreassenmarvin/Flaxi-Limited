@@ -26,5 +26,27 @@ $(function () {
         setTimeout(function () {
             window.location.href = "/";
         }, 3000);
+    });
+
+    // Testing Video
+
+    $(".testing-vid").on('ended', function() {
+        $(".testing-vid").get(0).pause();
+        $(".testing-vid").get(0).currentTime = 0;
+    })
+
+    // Modal Video
+    $('.btn-play').click(function () {
+        $('#myModal').fadeIn();
+        $('.modal-overlay').fadeIn();
+        $(".testing-vid").get(0).pause();
+        $(".testing-vid").get(0).currentTime = 0;
+    })
+
+    $('.modal-close').click(function() {
+        $('#myModal').fadeOut();
+        $('.modal-overlay').fadeOut();
+        $(".testing-vid").get(0).play();
+        $('iframe').attr('src', $('iframe').attr('src'));
     })
 })
